@@ -50,12 +50,12 @@ def scraper():
             print(e)
     
     first_fifty_furn_df = pd.DataFrame(first_fifty_furn)
-    first_fifty_furn_df.to_csv('../static/first_fifty.csv', index=False, sep=';')
+    first_fifty_furn_df.to_csv('first_fifty.csv', index=False, sep=';')
     return "Scraping complete.  View results at '.../scrape/all'"
     
 @app.route("/scrape/all")
 def display():
-    data_displayed = pd.read_csv('../static/first_fifty.csv')
+    data_displayed = pd.read_csv('first_fifty.csv')
     print(data_displayed)
     display_df = pd.to_DataFrame(data_displayed)
     return display_df
