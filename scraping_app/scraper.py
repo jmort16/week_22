@@ -8,8 +8,6 @@ from bs4 import BeautifulSoup as bs
 import pandas as pd
 from csv import chmod
 
-chmod 755 'first_fifty.csv'
-
 # Create instance of Flask app
 app = Flask(__name__)
 
@@ -51,15 +49,13 @@ def scraper():
             print(e)
     
     first_fifty_furn_df = pd.DataFrame(first_fifty_furn)
-    first_fifty_furn_df.to_csv('../static/first_fifty.csv')
-    return "Scraping complete.  View results at '.../scrape/all'"
-    
+    return first_fifty_furn_df
+
+x = scraper()
+
 @app.route("/scrape/all")
 def display():
-    
-    data_displayed = pd.read_csv('../static/first_fifty.csv')
-    display_df = pd.to_DataFrame(data_displayed)
-    return render_template('index.html', data=display_df)
+    return render_template('index.html', data=x)
 
 if __name__ == "__main__":
     app.run(debug=True)
