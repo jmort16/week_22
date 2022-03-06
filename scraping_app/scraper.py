@@ -48,11 +48,13 @@ def scraper():
             print(e)
     
     first_fifty_furn_df = pd.DataFrame(first_fifty_furn)
-    return first_fifty_furn_df
+    first_fifty_furn_df.to_csv('first_fifty.csv', index=False, sep=';')
+    return "Scraping complete.  View results at '.../scrape/all'"
     
-    @app.route("scrape/all")
-    def display():
-        return render_template("index.html", data = x)
+@app.route("scrape/all")
+def display():
+    data_displayed = pd.read_csv('first_fifty.csv')
+    return render_template("index.html", data = data_displayed)
 
 
 if __name__ == "__main__":
