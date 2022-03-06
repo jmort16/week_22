@@ -53,7 +53,7 @@ def scraper():
     
 @app.route("/scrape/all")
 def display():
-    data_displayed = pd.read_csv('first_fifty.csv')
+    data_displayed = pd.read_csv('first_fifty.csv', lineterminator='\n')
     print(data_displayed)
     display_df = pd.to_DataFrame(data_displayed)
     return display_df
