@@ -6,6 +6,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from splinter import Browser
 from bs4 import BeautifulSoup as bs
 import pandas as pd
+import csv
 
 # Create instance of Flask app
 app = Flask(__name__)
@@ -46,15 +47,21 @@ def scraper():
             
         except AttributeError as e:
             print(e)
-        
-    return first_fifty_furn
+    fields = ["Item Name", "Date Posted", "Price", "Seller Location", "Web Link"]
+    filename = "first_fifty.csv"
+    csvfile = open(filename, 'w')
+    writer = csv.DictWriter(csvfile, fieldnames=fields)
+    writer.writeheader()
+    writer.writerows(first_fifty_furn)
+    return 'first_fifty.csv'
 
 x = scraper()
 first_fifty_furn_df = pd.DataFrame(x)
 
 @app.route("/scrape/all")
 def display():
-    return render_template('index.html', data=first_fifty_furn_df)
+    with open('first_fifty.csv'):
+        return render_template('index.html', data=first_fifty_furn_df)
 
 if __name__ == "__main__":
     app.run(debug=True)
