@@ -53,15 +53,13 @@ def scraper():
     writer = csv.DictWriter(csvfile, fieldnames=fields)
     writer.writeheader()
     writer.writerows(first_fifty_furn)
-    return 'first_fifty.csv'
-
-#x = scraper()
-#first_fifty_furn_df = pd.DataFrame(x)
+    return "Scraping complete.  To view results, go to '../scrape/all'"
 
 @app.route("/scrape/all")
 def display():
-    dataframe = pd.read_csv('first_fifty.csv')
-    return render_template('index.html', data=dataframe)
+    furn_data = pd.read_csv('first_fifty.csv')
+    df = pd.DataFrame(furn_data)
+    return render_template('index.html', data=df)
 
 if __name__ == "__main__":
     app.run(debug=True)
