@@ -49,12 +49,12 @@ def scraper():
         
     return first_fifty_furn
 
-first_fifty_furn_df = pd.DataFrame(first_fifty_furn)
 x = scraper()
+first_fifty_furn_df = pd.DataFrame(x)
 
 @app.route("/scrape/all")
 def display():
-    return render_template('index.html', data=x)
+    return render_template('index.html', data=first_fifty_furn_df)
 
 if __name__ == "__main__":
     app.run(debug=True)
