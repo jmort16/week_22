@@ -17,6 +17,7 @@ def greeting():
 @app.route("/scrape")
 # Define scraper function
 def scraper():
+    print('Scraping in Progress...')
     executable_path = {'executable_path':ChromeDriverManager().install()}
     browser = Browser('chrome',**executable_path,headless=True)
 
@@ -51,11 +52,10 @@ def scraper():
     first_fifty_furn_df.to_csv('first_fifty.csv', index=False, sep=';')
     return "Scraping complete.  View results at '.../scrape/all'"
     
-@app.route("scrape/all")
+@app.route("/scrape/all")
 def display():
     data_displayed = pd.read_csv('first_fifty.csv')
     return render_template("index.html", data = data_displayed)
-
 
 if __name__ == "__main__":
     app.run(debug=True)
