@@ -49,15 +49,15 @@ def scraper():
             print(e)
     
     first_fifty_furn_df = pd.DataFrame(first_fifty_furn)
-    first_fifty_furn_df.to_csv('first_fifty.csv', index=False, sep=';', line_terminator='\n')
+    first_fifty_furn_df.to_csv('../static/first_fifty.csv')
     return "Scraping complete.  View results at '.../scrape/all'"
     
 @app.route("/scrape/all")
 def display():
-    data_displayed = pd.read_csv()
-    print(data_displayed)
+    chmod 755 first_fifty.csv
+    data_displayed = pd.read_csv('../static/first_fifty.csv')
     display_df = pd.to_DataFrame(data_displayed)
-    return display_df
+    return render_template('index.html', data=display_df)
 
 if __name__ == "__main__":
     app.run(debug=True)
