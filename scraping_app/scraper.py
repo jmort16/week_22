@@ -18,6 +18,8 @@ def greeting():
 # Define scraper function
 def message():
     return('Scraping in Progress...')
+
+@app.route("/scrape")
 def scraper():
     executable_path = {'executable_path':ChromeDriverManager().install()}
     browser = Browser('chrome',**executable_path,headless=True)
