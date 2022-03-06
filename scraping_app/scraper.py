@@ -6,7 +6,6 @@ from webdriver_manager.chrome import ChromeDriverManager
 from splinter import Browser
 from bs4 import BeautifulSoup as bs
 import pandas as pd
-from csv import chmod
 
 # Create instance of Flask app
 app = Flask(__name__)
