@@ -6,7 +6,9 @@ from webdriver_manager.chrome import ChromeDriverManager
 from splinter import Browser
 from bs4 import BeautifulSoup as bs
 import pandas as pd
-import csv
+from csv import chmod
+
+chmod 755 'first_fifty.csv'
 
 # Create instance of Flask app
 app = Flask(__name__)
@@ -54,7 +56,7 @@ def scraper():
     
 @app.route("/scrape/all")
 def display():
-    chmod 755 first_fifty.csv
+    
     data_displayed = pd.read_csv('../static/first_fifty.csv')
     display_df = pd.to_DataFrame(data_displayed)
     return render_template('index.html', data=display_df)
