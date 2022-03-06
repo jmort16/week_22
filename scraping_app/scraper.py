@@ -47,7 +47,7 @@ def scraper():
         except AttributeError as e:
             print(e)
     
-    first_fifty_furn_df = pd.DataFrame(first_fifty_furn)
+    first_fifty_furn_df = pd.DataFrame.from_records(first_fifty_furn)
     first_fifty_furn_df.to_csv('first_fifty.csv', index=False, sep=';')
     return "Scraping complete.  View results at '.../scrape/all'"
     
