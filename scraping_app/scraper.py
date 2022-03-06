@@ -46,10 +46,10 @@ def scraper():
             
         except AttributeError as e:
             print(e)
-    
-    first_fifty_furn_df = pd.DataFrame(first_fifty_furn)
-    return first_fifty_furn_df
+        
+    return first_fifty_furn
 
+first_fifty_furn_df = pd.DataFrame(first_fifty_furn)
 x = scraper()
 
 @app.route("/scrape/all")
